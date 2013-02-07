@@ -95,7 +95,7 @@ class Discussion < ActiveRecord::Base
 
   def mark_as_read_for(user)
     speaker = Speaker.find_or_create_by_user_id_and_discussion_id(user.id, self.id)
-    speaker.update_attribute(read: true)
+    speaker.update_attribute(last_message_read: true)
     speaker.touch
   end
 
