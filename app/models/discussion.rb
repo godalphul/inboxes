@@ -81,7 +81,7 @@ class Discussion < ActiveRecord::Base
   def unread_for?(user)
     speaker = find_speaker_by_user(user)
     if speaker
-      self.updated_at >= speaker.updated_at
+       self.updated_at >= speaker.updated_at
     else
       true
     end
@@ -95,6 +95,7 @@ class Discussion < ActiveRecord::Base
 
   def mark_as_read_for(user)
     speaker = Speaker.find_or_create_by_user_id_and_discussion_id(user.id, self.id)
+    speaker.update_attribute(read: true)
     speaker.touch
   end
 
