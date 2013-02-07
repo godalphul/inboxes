@@ -6,6 +6,7 @@ class Inboxes::MessagesController < Inboxes::BaseController
     @message.user = current_user
     @message.discussion = @discussion
     @message.save
+    @message.reset_discussion_reads
 
     respond_to do |format|
       format.html { redirect_to @message.discussion }

@@ -14,6 +14,18 @@ class Inboxes::DiscussionsController < Inboxes::BaseController
     @discussion.messages.build
   end
   
+  def mark_as_unread
+    speaker = Speaker.find_or_create_by_user_id_and_discussion_id(current_user.id, params[:id])
+    speaker.update_attribute(:last_message_read, false)
+    redirect_to discussions_url
+  end
+  
+  def add_users
+    @discussion = Discussion.find(params[:id])
+  end
+  
+
+  
   def destroy
     @discussion.destroy
     

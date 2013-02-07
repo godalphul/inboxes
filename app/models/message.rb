@@ -23,10 +23,20 @@ class Message < ActiveRecord::Base
       true
     end
   end
+  
+  def reset_discussion_reads
+    discussion.speakers.where("user_id <> ?", user_id).each do |speaker|
+      speaker.update_attribute(:last_message_read, false)
+    end
+  end
+  
+
 
   private
 
   def mark_discussion_as_read
     self.discussion.mark_as_read_for(self.user)
   end
+  
+  
 end
