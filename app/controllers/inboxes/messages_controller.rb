@@ -7,6 +7,8 @@ class Inboxes::MessagesController < Inboxes::BaseController
     @message.discussion = @discussion
     @message.save
     @message.reset_discussion_reads
+    
+    Mailer.new_message(@message).deliver
 
     respond_to do |format|
       format.html { redirect_to @message.discussion }
