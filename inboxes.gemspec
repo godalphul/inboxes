@@ -3,9 +3,9 @@ $:.push File.expand_path("../lib", __FILE__)
 require "inboxes/version"
 
 Gem::Specification.new do |s|
-  s.name        = "inboxes"
-  s.version     = Inboxes::VERSION
-  s.authors     = ["Kir Shatrov"]
+  s.name        = "inboxes_with_mail"
+  s.version     = '0.1.0'
+  s.authors     = ["built off of Kir Shatrov's inboxes"]
   s.email       = ["shatrov@me.com"]
   s.homepage    = "http://evrone.com/"
   s.summary     = %q{Messaging system for Rails 3 app}
