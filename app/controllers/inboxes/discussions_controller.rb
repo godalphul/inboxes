@@ -47,6 +47,7 @@ class Inboxes::DiscussionsController < Inboxes::BaseController
 
     if @discussion.save
       redirect_to @discussion, :notice => t("inboxes.discussions.started")
+      Mailer.new_message( @discussion.messages.first).deliver
     else
       render :action => "new"
     end
@@ -66,6 +67,7 @@ class Inboxes::DiscussionsController < Inboxes::BaseController
         # it exists, let's add message and redirect current user
         @discussion.messages.each do |message|
           Message.create(:discussion => discussion, :user => current_user, :body => message.body) if message.body
+        #  Mailer.new_message(message).deliver
         end
         # redirecting to that existing object
         redirect_to discussion_url(discussion), :notice => t("inboxes.discussions.already_exists", :user => user[Inboxes::config.user_name])
