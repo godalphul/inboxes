@@ -3,8 +3,8 @@ $:.push File.expand_path("../lib", __FILE__)
 require "inboxes/version"
 
 Gem::Specification.new do |s|
-  s.name        = "inboxes_with_mail"
-  s.version     = '0.1.0'
+  s.name        = "inboxes"
+  s.version     = '0.1.1'
   s.authors     = ["built off of Kir Shatrov's inboxes"]
   s.email       = ["shatrov@me.com"]
   s.homepage    = "http://evrone.com/"
