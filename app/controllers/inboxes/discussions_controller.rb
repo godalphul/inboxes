@@ -47,7 +47,9 @@ class Inboxes::DiscussionsController < Inboxes::BaseController
 
     if @discussion.save
       redirect_to @discussion, :notice => t("inboxes.discussions.started")
-      Mailer.new_message( @discussion.messages.first).deliver
+      if @discussion.messages.any?
+        Mailer.new_message( @discussion.messages.last).deliver
+      end
     else
       render :action => "new"
     end

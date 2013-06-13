@@ -10,11 +10,11 @@ class Message < ActiveRecord::Base
   validates :user, :discussion, :body, :presence => true
 
   after_save :mark_discussion_as_read
-  after_create :send_email
+#  after_create :send_email
   
-  def send_email
-    Mailer.new_message(self).deliver
-  end
+#  def send_email
+#    Mailer.new_message(self).deliver
+#  end
 
   def visible_for? user
     self.created_at.to_i >= self.discussion.user_invited_at(user).to_i
